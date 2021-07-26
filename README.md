@@ -1,9 +1,5 @@
-說明：
-這個Repository主要是數位教室監控的手機平台程式碼專案
+# How to Integrate OkHTTP on Android
 
-環境：
-andriod stdio 4.1.2
+This project showcases a tutorial on how to integrate OkHTTP on an Android application.
 
-注意事項：
-無
-
+Please check the post for more details regarding this project's code.
