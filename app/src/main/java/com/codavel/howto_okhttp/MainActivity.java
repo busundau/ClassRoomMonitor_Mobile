@@ -42,6 +42,7 @@ public class MainActivity   extends AutoLayoutActivity {
     private Button button;
     private  int counter=0;
     private Timer myTimer;
+    private Timer myTimer22;
     private Button button01;
     private Button button02;
     private Button button03;
@@ -127,7 +128,14 @@ public class MainActivity   extends AutoLayoutActivity {
 
         }, 0, 2000);
 
+        myTimer22 = new Timer();
+        myTimer22.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                TimerMethod2();
+            }
 
+        }, 0, 500);
 
 
 
@@ -175,7 +183,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=5&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=5&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -224,7 +232,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=1&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=1&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -270,7 +278,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=7&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=7&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -315,7 +323,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=3&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=3&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -360,7 +368,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Stop=0&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Stop=0&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -405,7 +413,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=4&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=4&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -449,7 +457,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=6&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=6&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -495,7 +503,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=2&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=2&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -539,7 +547,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=8&PanSpeed=6&TiltSpeed=6")
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Direction=8&PanSpeed=8&TiltSpeed=8")
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -1069,7 +1077,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 RequestBody postBody = RequestBody.create(JSON, postData.toString());
                 Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
+                        .url("http://192.168.100.253/cgi/presetSet?existFlag=1&language=en&Pan=25500&Tilt=3300&ZoomPosition=22000")//flag=4表示call presetNum從0開始表示第一組
                         .addHeader("Authorization", Credentials.basic("admin", "admin"))
                         .post(postBody)
                         .build();
@@ -1206,55 +1214,72 @@ public class MainActivity   extends AutoLayoutActivity {
         this.runOnUiThread(Timer_Tick);
     }
 
+    private void TimerMethod2()
+    {
+        //This method is called directly by the timer
+        //and runs in the same thread as the timer.
+
+        //We call the method that will work with the UI
+        //through the runOnUiThread method.
+        this.runOnUiThread(Timer_Tick2);
+    }
+
 
     private Runnable Timer_Tick = new Runnable() {
         public void run() {
             //This method runs in the same thread as the UI.
+            if(  flag==0)
             webView.reload();
 
-         if(  flag==1)
-         {
 
-             //Do something to the UI thread here
-             OkHttpClient client = new OkHttpClient();
-             // POST
-             JsonObject postData = new JsonObject();
-             postData.addProperty("name", "morpheus");
-             postData.addProperty("job", "leader");
-
-             final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-             RequestBody postBody = RequestBody.create(JSON, postData.toString());
-             Request post = new Request.Builder()
-                     .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Stop=0&PanSpeed=6&TiltSpeed=6")
-                     .addHeader("Authorization", Credentials.basic("admin", "admin"))
-                     .post(postBody)
-                     .build();
-
-             client.newCall(post).enqueue(new Callback() {
-                 @Override
-                 public void onFailure(Call call, IOException e) {
-                     e.printStackTrace();
-                 }
-
-                 @Override
-                 public void onResponse(Call call, Response response) {
-                     try {
-                         ResponseBody responseBody = response.body();
-                         if (!response.isSuccessful()) {
-                             throw new IOException("Unexpected code " + response);
-                         }
-
-                         Log.i("data", responseBody.string());
-                     } catch (Exception e) {
-                         e.printStackTrace();
-                     }
-                 }
-             });
-             flag=0;
-         }
         }
     };
+    private Runnable Timer_Tick2 = new Runnable() {
+        public void run() {
 
+
+            if(  flag==1)
+            {
+
+                //Do something to the UI thread here
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/ptz_set?Channel=1&Group=PTZCtrlInfo&Stop=0&PanSpeed=6&TiltSpeed=6")
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                flag=0;
+            }
+        }
+    };
     public void getWebview(String myurl)
     {
 
