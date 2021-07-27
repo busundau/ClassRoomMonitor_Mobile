@@ -59,6 +59,11 @@ public class MainActivity   extends AutoLayoutActivity {
     private Button button15;
     private Button button16;
     private Button button17;
+    private Button button18;
+    private Button button19;
+    private Button button20;
+    private Button button21;
+    private Button button22;
     public int flag=0;
 
     @Override
@@ -86,6 +91,12 @@ public class MainActivity   extends AutoLayoutActivity {
         button15 = (Button)findViewById(R.id.button15);
         button16 = (Button)findViewById(R.id.button16);
         button17 = (Button)findViewById(R.id.button17);
+        button18 = (Button)findViewById(R.id.button18);
+        button19 = (Button)findViewById(R.id.button19);
+        button20 = (Button)findViewById(R.id.button20);
+        button21 = (Button)findViewById(R.id.button21);
+        button22 = (Button)findViewById(R.id.button22);
+
 
         webView =(WebView)findViewById(R.id.webview);
 
@@ -103,7 +114,9 @@ public class MainActivity   extends AutoLayoutActivity {
 
 
         //URL gir "....."
+       // getWebview("http://192.168.100.253/jpgimage/1/image.jpg");
         getWebview("http://192.168.100.253/mjpgstreamreq/1/image.jpg");
+
 
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
@@ -561,7 +574,7 @@ public class MainActivity   extends AutoLayoutActivity {
 
             @Override
 
-            public void onClick(View v) {
+            public void onClick(View v) {   //Zoom Out
                 flag=1;
                 OkHttpClient client = new OkHttpClient();
                 // POST
@@ -608,7 +621,7 @@ public class MainActivity   extends AutoLayoutActivity {
 
             @Override
 
-            public void onClick(View v) {
+            public void onClick(View v) {         //Zoom in
                 flag=1;
                 OkHttpClient client = new OkHttpClient();
                 // POST
@@ -655,7 +668,7 @@ public class MainActivity   extends AutoLayoutActivity {
 
             @Override
 
-            public void onClick(View v) {
+            public void onClick(View v) {   //Focus far
                 flag=1;
                 OkHttpClient client = new OkHttpClient();
                 // POST
@@ -709,7 +722,7 @@ public class MainActivity   extends AutoLayoutActivity {
 
             @Override
 
-            public void onClick(View v) {
+            public void onClick(View v) {     //Focus Near
                 flag=1;
                 OkHttpClient client = new OkHttpClient();
                 // POST
@@ -897,6 +910,244 @@ public class MainActivity   extends AutoLayoutActivity {
         });
 
         button17.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                flag=1;
+
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+
+        button18.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                flag=1;
+
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/presetSet?existFlag=1&flag=3&language=en&presetName=G4&presetNum=4")//flag=3表示set presetNum從0開始表示第一組
+                //http://192.168.100.253/form/presetSet?_=1627369923499
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+
+
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+        button19.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                flag=1;
+
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/presetSet?existFlag=1&flag=4&language=en&presetName=G4&presetNum=4")//flag=4表示call presetNum從0開始表示第一組
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+
+        button20.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                flag=1;
+
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+
+        button21.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                flag=1;
+
+                OkHttpClient client = new OkHttpClient();
+                // POST
+                JsonObject postData = new JsonObject();
+                postData.addProperty("name", "morpheus");
+                postData.addProperty("job", "leader");
+
+                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                RequestBody postBody = RequestBody.create(JSON, postData.toString());
+                Request post = new Request.Builder()
+                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
+                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
+                        .post(postBody)
+                        .build();
+
+                client.newCall(post).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) {
+                        try {
+                            ResponseBody responseBody = response.body();
+                            if (!response.isSuccessful()) {
+                                throw new IOException("Unexpected code " + response);
+                            }
+
+                            Log.i("data", responseBody.string());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+
+        button22.setOnClickListener(new Button.OnClickListener(){
 
             @Override
 

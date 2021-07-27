@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/howto-okhttp-android-master.iml" filepath="$PROJECT_DIR$/.idea/modules/howto-okhttp-android-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/howto-okhttp-android-master.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/howto-okhttp-android-master.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ClassRoomMonitor_Mobile.iml" filepath="$PROJECT_DIR$/.idea/modules/ClassRoomMonitor_Mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ClassRoomMonitor_Mobile.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ClassRoomMonitor_Mobile.app.iml" />
     </modules>
   </component>
 </project>
