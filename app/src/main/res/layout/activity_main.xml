@@ -94,14 +94,17 @@
                 android:id="@+id/a27"
                 android:layout_width="288px"
                 android:layout_height="match_parent"
+                android:background="@android:color/background_dark"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button22"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_orange_light" />
             </LinearLayout>
         </LinearLayout>
 

@@ -14,13 +14,22 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.gson.JsonObject;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,7 +45,8 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class MainActivity   extends AutoLayoutActivity {
-
+    String result; // 儲存資料用的字串
+    TextView textView; // 把視圖的元件宣告成全域變數
     private ProgressDialog prg;
     private WebView webView;
     private Button button;
@@ -64,7 +74,7 @@ public class MainActivity   extends AutoLayoutActivity {
     private Button button19;
     private Button button20;
     private Button button21;
-    private Button button22;
+
     public int flag=0;
 
     @Override
@@ -74,7 +84,7 @@ public class MainActivity   extends AutoLayoutActivity {
         // init timer
        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);// 横屏
         setRequestedOrientation(ActivityInfo .SCREEN_ORIENTATION_PORTRAIT);//竖屏
-
+        textView = findViewById(R.id.textView);
         button01 = (Button)findViewById(R.id.button);
         button02 = (Button)findViewById(R.id.button2);
         button03 = (Button)findViewById(R.id.button3);
@@ -96,7 +106,7 @@ public class MainActivity   extends AutoLayoutActivity {
         button19 = (Button)findViewById(R.id.button19);
         button20 = (Button)findViewById(R.id.button20);
         button21 = (Button)findViewById(R.id.button21);
-        button22 = (Button)findViewById(R.id.button22);
+
 
 
         webView =(WebView)findViewById(R.id.webview);
@@ -1113,97 +1123,89 @@ public class MainActivity   extends AutoLayoutActivity {
             @Override
 
             public void onClick(View v) {
+                Thread thread = new Thread(mutiThread3);
+                thread.start(); // 開始執行
                 flag=1;
 
-                OkHttpClient client = new OkHttpClient();
-                // POST
-                JsonObject postData = new JsonObject();
-                postData.addProperty("name", "morpheus");
-                postData.addProperty("job", "leader");
 
-                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                RequestBody postBody = RequestBody.create(JSON, postData.toString());
-                Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
-                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
-                        .post(postBody)
-                        .build();
-
-                client.newCall(post).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) {
-                        try {
-                            ResponseBody responseBody = response.body();
-                            if (!response.isSuccessful()) {
-                                throw new IOException("Unexpected code " + response);
-                            }
-
-                            Log.i("data", responseBody.string());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
 
             }
 
         });
 
 
-        button22.setOnClickListener(new Button.OnClickListener(){
 
-            @Override
-
-            public void onClick(View v) {
-                flag=1;
-
-                OkHttpClient client = new OkHttpClient();
-                // POST
-                JsonObject postData = new JsonObject();
-                postData.addProperty("name", "morpheus");
-                postData.addProperty("job", "leader");
-
-                final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-                RequestBody postBody = RequestBody.create(JSON, postData.toString());
-                Request post = new Request.Builder()
-                        .url("http://192.168.100.253/cgi/camera_set?Channel=1&Group=BasicInfo&MirrorVer=1")
-                        .addHeader("Authorization", Credentials.basic("admin", "admin"))
-                        .post(postBody)
-                        .build();
-
-                client.newCall(post).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) {
-                        try {
-                            ResponseBody responseBody = response.body();
-                            if (!response.isSuccessful()) {
-                                throw new IOException("Unexpected code " + response);
-                            }
-
-                            Log.i("data", responseBody.string());
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-            }
-
-        });
 
 
 
     }
+
+    private Runnable mutiThread3 = new Runnable(){
+        public void run()
+        {
+
+
+            //  URLDecoder.decode(str, "UTF-8");
+            try {
+                //這裡實際上只用到classname的值而已,用作查詢資料庫做判斷
+                JSONObject body = new JSONObject();
+                body.put("classname","class1");
+                body.put("onlinepeople","10");
+                body.put("offlinepeople","10");
+                body.put("classtotalpeople","20");
+
+                //記得連上無線網路並確認好port是多少,這邊是88
+                String urlPath = "http://192.168.100.112:88/cgi-bin/cgi_mobileReadfromSQL.py";
+                URL url = new URL(urlPath);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(5000);
+                // 设置允许输出
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+                conn.setRequestMethod("POST");
+                // 设置contentType
+                conn.setRequestProperty("Content-type", "application/json;charset=UTF-8");
+                DataOutputStream os = new DataOutputStream( conn.getOutputStream());
+                String content = String.valueOf(body);
+                os.writeBytes(content);
+                os.flush();
+                os.close();
+
+
+                if(conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    InputStreamReader in = new InputStreamReader(conn.getInputStream(),"big5");
+                    BufferedReader bf = new BufferedReader(in);
+                    String recieveData = null;
+                    result = "";
+                    while ((recieveData = bf.readLine()) != null){
+                        result += recieveData + "\n";
+                    }
+
+
+                    in.close();
+                    conn.disconnect();
+                }
+                if(result == null || result.equals(""))
+                {
+
+                }else
+                    Log.v("MYAPP", result);
+
+
+            }
+            catch (IOException | JSONException io){
+                Log.e("MYAPP", "unexpected IO exception", io);
+            }
+
+            // 當這個執行緒完全跑完後執行
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    textView.setText("online : "+result); // 更改顯示文字
+                }
+            });
+        }
+    };
+
     private void TimerMethod()
     {
         //This method is called directly by the timer
@@ -1228,8 +1230,11 @@ public class MainActivity   extends AutoLayoutActivity {
     private Runnable Timer_Tick = new Runnable() {
         public void run() {
             //This method runs in the same thread as the UI.
-            if(  flag==0)
-            webView.reload();
+            if(  flag==0) {
+                webView.reload();
+                Thread thread = new Thread(mutiThread3);
+                thread.start(); // 開始執行
+            }
 
 
         }
