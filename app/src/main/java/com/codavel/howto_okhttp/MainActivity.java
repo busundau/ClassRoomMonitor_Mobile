@@ -1155,7 +1155,7 @@ public class MainActivity   extends AutoLayoutActivity {
                 body.put("classtotalpeople","20");
 
                 //記得連上無線網路並確認好port是多少,這邊是88
-                String urlPath = "http://192.168.100.112:88/cgi-bin/cgi_mobileReadfromSQL.py";
+                String urlPath = "http://192.168.100.112/cgi-bin/cgi_mobileReadfromSQL.py";
                 URL url = new URL(urlPath);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(5000);
